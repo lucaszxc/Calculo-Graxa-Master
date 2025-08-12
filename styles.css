@@ -1,0 +1,426 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+* {
+    margin: 0;
+    /* Remove margens padrao */
+    padding: 0;
+    /* Remove preenchimentos padrão */
+    box-sizing: border-box;
+    /* Garante que a largura e altura incluam borda e preenchimento */
+    font-family: 'Poppins' !important;
+}
+
+@media(max-width:768px)
+{
+    .flex-mobile
+    {
+        flex-direction: column !important;
+    }
+
+    .watermark img
+    {
+        width: 400px !important;
+    }
+
+
+}
+
+.hidden
+{
+    display: none !important;
+}
+
+body {
+    font-family: Arial, Arial;
+   /* background-color: #000000;*/
+    margin: 0;
+    /* Remova a margem superior */
+    padding: 0;
+    /* Remova o preenchimento padrão */
+    width: 100%;
+    height: 100%;
+    background: #1c1c1c !important;
+}
+
+.desenvolvido {
+    position: static !important;
+    width: 100%;
+    text-align: center;
+    background-color: #ff6060;
+    padding: 10px 0;
+    font-size: 0.9em;
+    z-index: 999; /* Set a high z-index value to ensure it appears above other elements */
+}
+
+form label
+{
+    color: #fff !important;
+    font-weight: 500 !important;
+    font-size: .8rem !important;
+}
+
+input::placeholder
+{
+  color: #fff !important;
+  font-size: .8rem !important;
+}
+
+
+
+
+
+.flex-mobile div
+{
+    width: 100% !important;
+}
+
+.form-group
+{
+    width: 100% !important;
+}
+
+@media print {
+    body * {
+        display: none !important;
+    }
+
+    #resultados p {
+       display: flex !important;
+       gap: 5px;
+    }
+
+    body
+    {
+        background: #ffffff !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: start !important;
+    }
+
+    .graxaRecomendada
+{
+    background:rgb(58, 215, 58) !important;
+    color: #000000 !important;
+}
+
+    .intervalos
+{
+    background: rgb(255, 204, 0) !important;
+}
+
+    .watermark
+    {
+        width: auto !important;
+    }
+    .titulo1, h2
+    {
+display: none !important;    }
+
+
+    .titulo2
+    {
+        display: block !important;
+    }
+
+    #imprimirRelatorio
+    {
+        display: none !important;
+    }
+    .result-container * {
+        display: block !important;
+    }
+
+    #graxaImagem
+    {
+        border-radius: 4px;
+        border: solid 1px #939393;
+        
+    }
+
+    .main-resultados {
+        display: flex !important;
+        justify-content: center !important;
+    }
+
+    .result-container
+    {
+        display: block !important;
+    }
+}
+
+form input, form select, form .btn1
+{
+    color: #fff !important;
+    outline: none;
+    width: 100% !important;
+    font-size: .8rem !important;
+    background: #192E64 !important;
+    border: solid #000 1px !important;
+    border-radius: 4px !important;
+}
+
+form input:focus
+{
+    outline: none !important;
+}
+
+.graxaRecomendada
+{
+    background:rgb(58, 215, 58) !important;
+    color: #000000 !important;
+}
+
+.intervalos
+{
+    background: rgb(255, 204, 0) !important;
+}
+
+#graxaImagem
+{
+    border-radius: 4px;
+}
+
+
+
+.form-container,
+.result-container {
+    flex: 1;
+    height: auto; /* Remova a altura fixa */
+}
+
+.form-container {
+    order: 1;
+    /* Define a ordem para layout flex (1º elemento) */
+}
+
+
+.result-container {
+    margin-top: .8rem;
+}
+
+
+/* Estilos para o formulário e seus elementos */
+form label {
+    display: block;
+    /* Faz com que as etiquetas apareçam em uma nova linha */
+    margin-bottom: 10px;
+    /* Adiciona margem inferior entre as etiquetas */
+    font-weight: bold;
+    /* Define a fonte em negrito para as etiquetas */
+}
+
+
+/* Estilos para o cabeçalho com imagem de fundo */
+header {
+    background-image: url("./assets/banner-lubvel.jpg");
+    /* Define a imagem de fundo */
+    background-size: 100% auto;
+    /* Define a largura da imagem para 100% e ajusta a altura automaticamente */
+    background-position: 10px 20px;
+    /* Define a posição da imagem de fundo */
+    height: 50vh;
+    /* Define a altura do cabeçalho como 50% da altura da viewport */
+    display: flex;
+    /* Usa layout flexível para centralizar o conteúdo */
+    text-align: center;
+    /* Centraliza o texto horizontalmente */
+    position: relative;
+    /* Define a posição do cabeçalho como relativa */
+}
+
+header h1 {
+    font-size: 40px;
+    /* Define o tamanho da fonte para o título */
+    color: white;
+    /* Define a cor do texto como branco */
+    position: absolute;
+    /* Define a posição do título como absoluta */
+    top: 100%;
+    /* Centraliza verticalmente */
+    left: 800%;
+    /* Centraliza horizontalmente */
+    transform: translate(-50%, -50%);
+    /* Reposiciona o título no centro */
+}
+
+
+#graxa-ceran {
+    margin-top: -100%;
+    margin-left: 10%;
+    width: 15vw;
+    height: 75vh;
+}
+
+.img-fluid {
+    width: 1050px;
+}
+
+
+#imag2 {
+    width: 100px;
+    z-index: 0;
+}
+
+
+form label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+
+
+#resultados {
+    font-family: Arial, sans-serif;
+    color: #333;
+    background-color: transparent;
+    text-align: center; /* Adicionado para centralizar o texto */
+    position: relative;
+}
+
+
+#botao-calcular{
+    margin-top: 21.5%;
+}
+#resultados h2 {
+    font-size: 34px;
+    color: #fff !important ;
+    margin-bottom: 16px;
+}
+
+#resultados p {
+    font-size: 18px;
+    line-height: 1.4;
+    margin-bottom: 10px;
+}
+
+#resultados div {
+    font-size: 18px;
+    line-height: 1.4;
+    margin-bottom: 10px;
+}
+
+
+
+#gerar-relatorio {
+    background-color: #3498DB;
+    /* Define a cor de fundo para o botão */
+    color: #fff;
+    /* Define a cor do texto do botão */
+    padding: 15px 25px;
+    /* Adiciona preenchimento interno ao botão */
+    border: none;
+    /* Remove a borda do botão */
+    border-radius: 4px;
+    /* Adiciona cantos arredondados ao botão */
+    cursor: pointer;
+    /* Muda o cursor ao passar por cima do botão */
+    width: 100%;
+
+}
+
+
+
+.container {
+    display: flex;
+}
+
+.form-container {
+    flex: 1;
+}
+
+.form-image {
+    flex: 1;
+}
+
+.form-image img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Estilos para a imagem na segunda parte (aba de resultados) */
+.imagem-resultado {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    /* Define a largura máxima para se ajustar ao contêiner */
+    height: auto;
+    /* Mantém a proporção original da imagem */
+    width: 1200px;
+    /* Defina a largura desejada em pixels */
+}
+
+/* Estilos para as caixas de texto das respostas na Parte 2 */
+#resultados p {
+    font-size: 23px;
+    color: #333;
+    margin-bottom: 2px;
+    padding: 4px;
+    /* Adicione um preenchimento para criar a caixa */
+    border: 1px solid #ccc;
+    /* Adicione uma borda para a caixa */
+    border-radius: 8px;
+    /* Adicione cantos arredondados */
+    background-color: #f8f8f8;
+    /* Cor de fundo da caixa */
+}
+
+#botao-maior {
+    height: 5%;
+
+}
+
+/* Certifique-se de que o contêiner pai da marca d'água tem position: relative; */
+.container-relativo {
+    position: relative;
+    /* outros estilos conforme necessário */
+}
+
+.watermark {
+    position: absolute; 
+    top: 0 !important;
+    left: 50% !important;
+    max-width: 100%;
+    transform: translate(-50%, 50%);
+    z-index: 9999 !important;
+    opacity: 0.1 !important; /* Corrigido o erro de digitação aqui */
+}
+
+
+
+
+/* Garante que o ícone do WhatsApp permaneça visível, mesmo quando outras partes da tela mudarem */
+body {
+    padding-bottom: 70px; /* Ajuste conforme a altura do ícone para evitar que o conteúdo seja sobreposto */
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Arial;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.desenvolvido {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    text-align: center;
+    background-color: #ff6060;
+    padding: 10px 0;
+    font-size: 0.9em;
+    z-index: 999;
+}
+
+
