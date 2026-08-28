@@ -13,536 +13,128 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <title>Lubvel Lubrificantes - Calculadora de Lubrificação</title>
-    <!-- Favicon com o logo correto -->
     <link rel="icon" href="https://i.ibb.co/P9t1YyH/Imagem-do-Whats-App-de-2024-05-28-s-16-19-11-d3a432f2-removebg-preview.png" type="image/png">
-    <style>
-        /* Estilos CSS combinados */
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif !important;
-        }
-
-        body {
-            background: #1c1c1c !important; /* Original dark background */
-        }
-
-        .hidden {
-            display: none !important;
-        }
-
-        .desenvolvido {
-            width: 100%;
-            text-align: center;
-            padding: 10px 0;
-            font-size: 0.9em;
-            z-index: 999;
-            background: #0069d9 !important; /* Original blue */
-        }
-        .desenvolvido span {
-            color: #000000 !important; /* Original black text */
-        }
-
-
-        form label {
-            color: #fff !important; /* Original white for labels */
-            font-weight: 500 !important;
-            font-size: .8rem !important;
-        }
-
-        input::placeholder {
-          color: #a0aec0 !important; /* Softer placeholder color */
-          font-size: .8rem !important;
-        }
-
-        form input, form select, form .btn {
-            color: #fff !important; /* Original white text for inputs/selects */
-            outline: none;
-            width: 100% !important;
-            font-size: .8rem !important;
-            background: #192E64 !important; /* Original dark blue background for inputs/selects */
-            border: solid #000 1px !important; /* Original black border */
-            border-radius: 4px !important;
-            padding: .5rem .75rem;
-        }
-
-        form input:focus, form select:focus {
-            outline: none !important;
-            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.5) !important; /* Original blue shadow on focus */
-            border-color: #3498DB !important; /* Original blue border on focus */
-        }
-        
-        /* Estilos melhorados para os botões de seleção de polia */
-        .btn-group-custom {
-            display: flex;
-            flex-direction: column; /* Empilha em telas pequenas */
-            gap: 10px; /* Espaçamento entre os botões */
-            width: 100%;
-        }
-
-        @media (min-width: 576px) { /* Em telas maiores, coloca lado a lado */
-            .btn-group-custom {
-                flex-direction: row;
-                justify-content: space-around;
-            }
-        }
-
-        .btn-group-custom .btn {
-            flex-grow: 1; /* Faz os botões ocuparem espaço igual */
-            background-color: #6c757d !important; /* Original medium gray */
-            color: #ffffff !important; /* Original white text */
-            border-radius: 8px !important; /* Mais arredondado */
-            padding: 0.8rem 1rem; /* Mais padding para um toque maior */
-            font-weight: 600 !important;
-            transition: all 0.3s ease; /* Transição suave */
-            border: none !important; /* Ensure no border from previous changes */
-        }
-
-        .btn-group-custom .btn:hover {
-            background-color: #5a6268 !important; /* Original darker gray on hover */
-            transform: translateY(-2px); /* Efeito de "levantar" */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        .btn-group-custom .btn.active {
-            background-color: #3498DB !important; /* Original blue */
-            border-color: #3498DB !important;
-            color: #fff !important;
-            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.5) !important; /* Sombra mais destacada */
-            transform: translateY(0); /* Remove o efeito de levantar quando ativo */
-        }
-
-
-        #resultados, .row.w-100.p-3.container.mb-4 {
-            font-family: 'Poppins', sans-serif;
-            color: #fff; /* Original white text */
-            background-color: #0e1f4a !important; /* Original dark blue background for form and results */
-            border-radius: 8px;
-            padding: 1.5rem;
-            width: 100%;
-            /* Removed box-shadow here as original didn't have it on the form container */
-        }
-
-        #resultados h2 {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #fff !important; /* Original white for headings */
-            margin-bottom: 1rem;
-            border-bottom: 1px solid #192E64; /* Original border */
-            padding-bottom: 0.5rem;
-        }
-
-        /* ESTILOS MELHORADOS PARA A CAIXA DE DADOS DE ENTRADA */
-        #resultados .summary-box {
-            background-color: transparent;
-            border: none;
-            padding: 0;
-            margin-bottom: 1.5rem;
-        }
-
-        #resultados .summary-box h3, #resultados .summary-box h4 {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #fff; /* Original white */
-            border-bottom: 1px solid #192E64; /* Original border */
-            padding-bottom: .5rem;
-            margin-bottom: .5rem;
-        }
-        
-        #resultados .list-group-item {
-            background-color: transparent;
-            border: none;
-            border-bottom: 1px solid #192E64; /* Original border */
-            padding: .5rem 0;
-            font-size: 0.9rem;
-            color: #fff; /* Original white text */
-        }
-        
-        #resultados .list-group-item:last-child {
-            border-bottom: none;
-        }
-
-        #resultados .list-group-item span {
-            color: #bdc3c7; /* Original muted gray for labels */
-        }
-
-        #resultados .list-group-item strong {
-            color: #fff; /* Original white for values */
-            text-align: right;
-        }
-
-        #resultados .result-item {
-            background-color: #192E64; /* Original dark blue background */
-            padding: 0.75rem 1rem;
-            border-radius: 4px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 0.5rem;
-        }
-
-        #resultados .result-item span:first-child {
-            font-weight: 500;
-            color: #bdc3c7; /* Original muted gray for label */
-        }
-
-        #resultados .result-item span:last-child {
-            font-weight: 700;
-            font-size: 1.1rem;
-            color: #3498DB; /* Original primary blue */
-        }
-
-        #resultados .result-item.highlight {
-            background-color: rgba(46, 204, 113, 0.2); /* Original green with transparency */
-            border-left: 4px solid #2ecc71; /* Original success green */
-        }
-
-        #resultados .result-item.highlight span:last-child {
-             color: #2ecc71; /* Original green */
-             font-size: 1.4rem;
-        }
-
-        /* Estilo para a nova seção de preenchimento do mancal */
-        .enchimento-mancal-box {
-            background-color: #192E64;
-            padding: 1rem;
-            border-radius: 4px;
-            margin-top: 1rem;
-            border: 1px dashed #3498DB;
-            text-align: center;
-        }
-        .enchimento-mancal-box h4 {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: #fff;
-        }
-        .enchimento-mancal-box p {
-            margin: 0;
-            font-size: 1rem;
-            color: #bdc3c7;
-        }
-        .enchimento-mancal-box strong {
-            color: #fff;
-            font-weight: 700;
-        }
-
-        #recomendacaoGraxa {
-            margin-top: 1.5rem;
-            padding: 1rem;
-            border-radius: 4px;
-            background-color: #192E64; /* Original dark blue */
-            border-top: 2px solid #3498DB; /* Original primary blue border */
-            color: #fff; /* Original white text */
-        }
-        #recomendacaoGraxa h4 {
-            /* These colors are set inline in JS, so no change needed here */
-        }
-        #recomendacaoGraxa strong {
-            color: #fff !important; /* Original white for recommended grease */
-        }
-        #recomendacaoGraxa p.small {
-            color: #95a5a6 !important; /* Original muted gray for small text, or text-white-50 class */
-        }
-
-
-        #avisoFinal {
-            margin-top: 1.5rem;
-            padding-top: 1rem;
-            border-top: 1px solid #192E64; /* Original border */
-            font-size: 0.8rem;
-            color: #95a5a6; /* Original muted gray */
-        }
-        
-        #botao-calcular {
-            background-color: #e44d26 !important; /* Original TotalEnergies orange/red */
-            border-color: #d1401d !important;
-            font-weight: 700 !important;
-            color: #fff !important;
-        }
-        #botao-calcular:hover {
-            background-color: #d1401d !important;
-        }
-
-        #toggleRolamentoMode {
-            color: #000 !important;
-            font-weight: 700 !important;
-            padding: 0.375rem .75rem !important;
-            font-size: .8rem !important;
-            border: solid 1px #000 !important;
-        }
-
-        /* Estilos para impressão */
-        @media print {
-            body { 
-                background: #ffffff !important; 
-                -webkit-print-color-adjust: exact !important;
-                color-adjust: exact !important;
-            }
-
-            /* Esconde todos os elementos da tela principal */
-            .no-print { display: none !important; }
-            
-            /* Exibe a logo de impressão */
-            .print-logo-header {
-                display: block !important;
-                width: 100% !important;
-                max-width: 600px !important;
-                margin: 0 auto 20px auto !important;
-                padding: 10px !important;
-                background-color: white !important;
-                border-radius: 4px !important;
-                text-align: center !important; /* Centraliza a imagem */
-            }
-            
-            .print-logo-header img {
-                width: auto;
-                max-width: 100%;
-                height: auto;
-            }
-
-
-            /* Estilos para a caixa de resultados na impressão */
-            #resultados {
-                display: block !important;
-                background: #0e1f4a !important;
-                color: #fff !important;
-                box-shadow: none;
-                border: none;
-                -webkit-print-color-adjust: exact !important;
-                color-adjust: exact !important;
-            }
-            
-            #resultados h2 {
-                color: #fff !important;
-                border-bottom: 1px solid #192E64 !important;
-                -webkit-print-color-adjust: exact !important;
-                color-adjust: exact !important;
-            }
-            
-            #resultados .summary-box h3, 
-            #resultados .summary-box h4 {
-                color: #fff !important;
-                border-bottom: 1px solid #192E64 !important;
-                -webkit-print-color-adjust: exact !important;
-                color-adjust: exact !important;
-            }
-            
-            #resultados .list-group-item {
-                color: #fff !important;
-                border-bottom: 1px solid #192E64 !important;
-                -webkit-print-color-adjust: exact !important;
-                color-adjust: exact !important;
-            }
-            
-            #resultados .list-group-item span {
-                color: #bdc3c7 !important;
-                -webkit-print-color-adjust: exact !important;
-                color-adjust: exact !important;
-            }
-            
-            #resultados .list-group-item strong {
-                color: #fff !important;
-                -webkit-print-color-adjust: exact !important;
-                color-adjust: exact !important;
-            }
-            
-            #resultados .result-item {
-                background-color: #192E64 !important;
-                color: #fff !important;
-                -webkit-print-color-adjust: exact !important;
-                color-adjust: exact !important;
-            }
-            
-            #resultados .result-item span:first-child {
-                color: #bdc3c7 !important;
-                -webkit-print-color-adjust: exact !important;
-                color-adjust: exact !important;
-            }
-            
-            #resultados .result-item span:last-child {
-                color: #3498DB !important;
-                -webkit-print-color-adjust: exact !important;
-                color-adjust: exact !important;
-            }
-            
-            #resultados .result-item.highlight {
-                background-color: rgba(46, 204, 113, 0.2) !important;
-                border-left: 4px solid #2ecc71 !important;
-                -webkit-print-color-adjust: exact !important;
-                color-adjust: exact !important;
-            }
-            
-            #resultados .result-item.highlight span:last-child {
-                color: #2ecc71 !important;
-                -webkit-print-color-adjust: exact !important;
-                color-adjust: exact !important;
-            }
-            
-            .enchimento-mancal-box {
-                background-color: #192E64 !important;
-                border: 1px dashed #3498DB !important;
-                color: #fff !important;
-                -webkit-print-color-adjust: exact !important;
-                color-adjust: exact !important;
-            }
-
-            .enchimento-mancal-box h4 {
-                color: #fff !important;
-                -webkit-print-color-adjust: exact !important;
-                color-adjust: exact !important;
-            }
-
-            .enchimento-mancal-box p {
-                color: #bdc3c7 !important;
-                -webkit-print-color-adjust: exact !important;
-                color-adjust: exact !important;
-            }
-
-            .enchimento-mancal-box strong {
-                color: #fff !important;
-                -webkit-print-color-adjust: exact !important;
-                color-adjust: exact !important;
-            }
-
-            #recomendacaoGraxa {
-                background-color: #192E64 !important;
-                border-top: 2px solid #3498DB !important;
-                color: #fff !important;
-                -webkit-print-color-adjust: exact !important;
-                color-adjust: exact !important;
-            }
-            
-            #recomendacaoGraxa strong {
-                color: #fff !important;
-                -webkit-print-color-adjust: exact !important;
-                color-adjust: exact !important;
-            }
-            
-            #avisoFinal {
-                border-top: 1px solid #192E64 !important;
-                color: #95a5a6 !important;
-                -webkit-print-color-adjust: exact !important;
-                color-adjust: exact !important;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 
 <body>
-    <div class="desenvolvido no-print" style="background: #0069d9;">
-        <span style="color: #000000 !important; font-weight: 600;">Desenvolvido por Lubvel Lubrificantes Industriais.</span>
+    <div class="desenvolvido no-print" style="background: #013a85;">
+        <span style="color: #ffffff !important; font-weight: 600;" data-i18n="developed_by">Desenvolvido por Lubvel Lubrificantes Industriais.</span>
     </div>
 
-    <div class="container mt-5 pt-4 d-flex justify-content-center">
+    <!-- Seletor de Idioma -->
+    <div class="container d-flex justify-content-end mt-3 no-print" style="max-width: 600px;">
+        <div class="btn-group btn-group-sm" role="group" aria-label="Language Selector">
+            <button type="button" class="btn btn-outline-light lang-btn active" data-lang="pt">PT</button>
+            <button type="button" class="btn btn-outline-light lang-btn" data-lang="en">EN</button>
+            <button type="button" class="btn btn-outline-light lang-btn" data-lang="fr">FR</button>
+        </div>
+    </div>
+
+    <div class="container mt-2 pt-2 d-flex justify-content-center">
         <div class="row w-100 p-3 container mb-4 no-print" style="max-width: 600px; background-color: #0e1f4a; border-radius: 8px;">
             <div class="w-100 order-sm-1">
                 <h1 class="d-flex w-100 justify-content-center">
-                    <!-- LOGO ATUALIZADO COM LINK PERMANENTE -->
                     <img style="border-radius: 4px; background-color: white; padding: 10px;" src="./assets/banner-lubvel.jpg" alt="Logo Lubvel e TotalEnergies" id="logo1" class="img-fluid" />
                 </h1>
                 <form class="mt-4 no-print" id="registroForm">
                     <!-- INFORMAÇÕES GERAIS -->
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="cliente">Nome do cliente:</label>
-                            <input type="text" class="form-control" id="cliente" placeholder="Ex: Trombini">
+                            <label for="cliente" data-i18n="client_name">Nome do cliente:</label>
+                            <input type="text" class="form-control" id="cliente" placeholder="Ex: Trombini" data-i18n-ph="placeholder_client">
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="equipamento">Nome do equipamento:</label>
-                            <input type="text" class="form-control" id="equipamento" placeholder="Ex: Exaustor Caldeira">
+                            <label for="equipamento" data-i18n="equipment_name">Nome do equipamento:</label>
+                            <input type="text" class="form-control" id="equipamento" placeholder="Ex: Exaustor Caldeira" data-i18n-ph="placeholder_equipment">
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="temperatura">Temperatura (°C):</label>
+                            <label for="temperatura" data-i18n="temperature">Temperatura (°C):</label>
                             <input type="number" class="form-control" id="temperatura" placeholder="Ex: 100">
                         </div>
 
-                    <!-- SEÇÃO DE ROLAMENTOS -->
+                        <!-- SEÇÃO DE ROLAMENTOS -->
                         <div class="form-group col-md-6">
-                            <label for="searchInput">Pesquisar rolamento:</label>
-                            <input class="form-control" type="text" id="searchInput" placeholder="Pesquisar...">
+                            <label for="searchInput" data-i18n="search_bearing">Pesquisar rolamento:</label>
+                            <input class="form-control" type="text" id="searchInput" placeholder="Pesquisar..." data-i18n-ph="placeholder_search">
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="tipoRolamento">Tipo de rolamento:</label>
+                            <label for="tipoRolamento" data-i18n="bearing_type">Tipo de rolamento:</label>
                             <select id="tipoRolamento" class="form-control">
-                                <option value="">Selecione...</option>
+                                <option value="" data-i18n="select_option">Selecione...</option>
                             </select>
                         </div>
                         <div class="form-group col-md-6" id="nomeRolamentoContainer" style="display: none;">
-                            <label for="nomeRolamento">Nome do rolamento:</label>
+                            <label for="nomeRolamento" data-i18n="custom_bearing_name">Nome do rolamento:</label>
                             <input type="text" class="form-control" id="nomeRolamento" />
                         </div>
                         <div class="form-group col-md-6">
                             <label id="rolamentoLabel">(Usar outro)</label>
-                            <button style="color: #fff !important;" type="button" class="w-100 btn btn-primary" id="toggleRolamentoMode">Adicionar Rolamento</button>
+                            <button style="color: #fff !important;" type="button" class="w-100 btn btn-primary" id="toggleRolamentoMode" data-i18n="btn_add_bearing">Adicionar Rolamento</button>
                         </div>
                     </div>
 
                     <!-- PASSO 1: VERIFICAÇÃO DE POLIAS -->
                     <div class="card p-3 mb-3" style="background-color: #192E64;">
-                            <label class="text-white">Passo 1: Rotação do Equipamento</label>
-                           <p class="text-white-50 small mb-2">O sistema do seu equipamento utiliza polias para transmissão?</p>
-                            <div class="btn-group-custom">
-                                <button type="button" id="btnSimPolia" class="btn btn-secondary">Sim, utiliza polias</button>
-                                <button type="button" id="btnNaoPolia" class="btn btn-secondary">Não, é acionamento direto</button>
-                            </div>
+                        <label class="text-white" data-i18n="step1_title">Passo 1: Rotação do Equipamento</label>
+                        <p class="text-white-50 small mb-2" data-i18n="step1_subtitle">O sistema do seu equipamento utiliza polias para transmissão?</p>
+                        <div class="btn-group-custom">
+                            <button type="button" id="btnSimPolia" class="btn btn-secondary" data-i18n="btn_pulley_yes">Sim, utiliza polias</button>
+                            <button type="button" id="btnNaoPolia" class="btn btn-secondary" data-i18n="btn_pulley_no">Não, é acionamento direto</button>
+                        </div>
                     </div>
 
                     <!-- CONTAINER CÁLCULO RPM (OCULTO) -->
                     <div id="calculoRpmContainer" class="hidden card p-3 mb-3" style="background-color: #192E64;">
-                        <label class="text-white">Cálculo de RPM da Polia Movida</label>
+                        <label class="text-white" data-i18n="rpm_pulley_title">Cálculo de RPM da Polia Movida</label>
                         <div class="form-row">
                             <div class="form-group col-md-4">
-                                <label for="n1">N1 (RPM Motor)</label>
+                                <label for="n1" data-i18n="label_n1">N1 (RPM Motor)</label>
                                 <input type="number" id="n1" class="form-control" placeholder="1750">
                             </div>
-                               <div class="form-group col-md-4">
-                                <label for="d1">D1 (Ø Polia Motor)</label>
+                            <div class="form-group col-md-4">
+                                <label for="d1" data-i18n="label_d1">D1 (Ø Polia Motor)</label>
                                 <input type="number" id="d1" class="form-control" placeholder="100">
                             </div>
-                               <div class="form-group col-md-4">
-                                <label for="d2">D2 (Ø Polia Movida)</label>
+                            <div class="form-group col-md-4">
+                                <label for="d2" data-i18n="label_d2">D2 (Ø Polia Movida)</label>
                                 <input type="number" id="d2" class="form-control" placeholder="200">
                             </div>
                         </div>
                         <p id="resultadoRpmCalculado" class="text-center font-weight-bold h6" style="color: #2ecc71;"></p>
                     </div>
 
-                    <!-- PASSO 2: DADOS DO ROLAMENTO (OCULTO INICIALMENTE) -->
+                    <!-- PASSO 2: DADOS DO ROLAMENTO -->
                     <div id="calculoGraxaContainer" class="hidden">
-                        <label class="text-white mt-3">Passo 2: Dados do Rolamento</label>
+                        <label class="text-white mt-3" data-i18n="step2_title">Passo 2: Dados do Rolamento</label>
                         <div class="form-row">
                             <div class="form-group col-md-6">
-                                <label for="rpmFinal">RPM (Rotações Por Minuto)</label>
+                                <label for="rpmFinal" data-i18n="label_rpm_final">RPM (Rotações Por Minuto)</label>
                                 <input type="number" class="form-control" id="rpmFinal" required />
                             </div>
-                               <div class="form-group col-md-6">
-                                <label for="dExterno">D.Externo (D) (mm):</label>
+                            <div class="form-group col-md-6">
+                                <label for="dExterno" data-i18n="label_outer_diam">D.Externo (D) (mm):</label>
                                 <input type="number" class="form-control" step="0.01" id="dExterno" required />
                             </div>
-                               <div class="form-group col-md-6">
-                                <label for="dInterno">D.Interno (d) (mm):</label>
+                            <div class="form-group col-md-6">
+                                <label for="dInterno" data-i18n="label_inner_diam">D.Interno (d) (mm):</label>
                                 <input type="number" class="form-control" step="0.01" id="dInterno" required />
                             </div>
-                               <div class="form-group col-md-6">
-                                <label for="largura">Largura (B) (mm):</label>
+                            <div class="form-group col-md-6">
+                                <label for="largura" data-i18n="label_width">Largura (B) (mm):</label>
                                 <input type="number" class="form-control" id="largura" required />
                             </div>
                             <div class="form-group col-12">
-                                <label for="fator">Fator de Cálculo (G)</label>
+                                <label for="fator" data-i18n="label_factor_g">Fator de Cálculo (G)</label>
                                 <select id="fator" class="form-control" required>
-                                    <option value="0.005">0,005 (Padrão)</option>
-                                    <option value="0.002">0,002 (W33, etc.)</option>
+                                    <option value="0.005" data-i18n="opt_standard_factor">0,005 (Padrão)</option>
+                                    <option value="0.002" data-i18n="opt_w33_factor">0,002 (W33, etc.)</option>
                                 </select>
                             </div>
                         </div>
 
-                           <div id="errorMessage" class="my-2 text-center text-danger font-weight-bold hidden"></div>
-                        <!-- BOTÃO COM ESTILO ALTERADO -->
-                        <button type="button" class="w-100 mt-2 btn" id="botao-calcular">
+                        <div id="errorMessage" class="my-2 text-center text-danger font-weight-bold hidden"></div>
+                        <button type="button" class="w-100 mt-2 btn" id="botao-calcular" data-i18n="btn_calculate">
                             Calcular Lubrificação
                         </button>
                     </div>
@@ -553,397 +145,31 @@
 
     <div class="main-resultados d-flex justify-content-center container" style="position: relative;">
         <div class="result-container" style="max-width:600px; display: none; position: relative;" id="resultados">
-            <!-- Logo para impressão - agora dentro do contêiner de resultados -->
             <div class="print-logo-header hidden">
-                 <img src="./assets/banner-lubvel.jpg" alt="Logo Lubvel e TotalEnergies" class="img-fluid" />
+                <img src="./assets/banner-lubvel.jpg" alt="Logo Lubvel e TotalEnergies" class="img-fluid" />
             </div>
-
-            <!-- Os resultados serão injetados aqui pelo JavaScript -->
         </div>
     </div>
     
     <!-- Carrossel -->
-    <div class="d-flex justify-content-center container mt-4 no-print" id="servicos" >
-        <div class=" owl-carousel owl-theme" style="max-width: 600px;">
-                
-            <div>  <div class="item-slider"><img style="max-height:250px; width:100%; object-fit: contain;" src="assets\10-slice.png">
-        </div></div>
-            <div>  <div class="item-slider"><img style="max-height:250px; width:100%; object-fit: contain;" src="assets\3000-slice.png">
-        </div></div>
-
-            <div>  <div class="item-slider"><img style="max-height: 250px; width:100%; object-fit: contain;" src="assets\250000-slice.png">
-            </div></div>
-            <div>  <div class="item-slider"><img style="max-height:250px; width:100%; object-fit: contain;" src="assets\400000-slice.png">
-            </div></div>
-            <div>  <div class="item-slider"><img style="max-height:250px; width:100%; object-fit: contain;" src="assets\600000-slice.png">
-            </div></div>
-            <div>  <div class="item-slider"><img style="max-height: 250px; width:100%; object-fit: contain;" src="assets\750000-slice.png">
-            </div></div>
+    <div class="d-flex justify-content-center container mt-4 no-print" id="servicos">
+        <div class="owl-carousel owl-theme" style="max-width: 600px;">
+            <div><div class="item-slider"><img style="max-height:250px; width:100%; object-fit: contain;" src="assets/10-slice.png"></div></div>
+            <div><div class="item-slider"><img style="max-height:250px; width:100%; object-fit: contain;" src="assets/3000-slice.png"></div></div>
+            <div><div class="item-slider"><img style="max-height:250px; width:100%; object-fit: contain;" src="assets/250000-slice.png"></div></div>
+            <div><div class="item-slider"><img style="max-height:250px; width:100%; object-fit: contain;" src="assets/400000-slice.png"></div></div>
+            <div><div class="item-slider"><img style="max-height:250px; width:100%; object-fit: contain;" src="assets/600000-slice.png"></div></div>
+            <div><div class="item-slider"><img style="max-height:250px; width:100%; object-fit: contain;" src="assets/750000-slice.png"></div></div>
         </div>  
     </div>
+
     <a href="https://api.whatsapp.com/send?phone=554599712081&text=Ol%C3%A1%2C%20vim%20pelo%20c%C3%A1lculo%20de%20DMN%20aqui" style="position: fixed !important; right: 2rem; bottom:2rem; z-index:9999;" target="_blank" class="no-print">
-        <!-- Ícone do WhatsApp Atualizado -->
-        <img style="width: 4.5rem; height: 4.5rem;" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/767px-WhatsApp.svg.png" alt="WhatsApp" id="whats" class="whatsapp-icon img-fluid" />
+        <img style="width: 4.5rem; height: 4.5rem;" src="assets/10000403-removebg-preview.png" alt="WhatsApp" id="whats" class="whatsapp-icon img-fluid" />
     </a>
     
-    <!-- Scripts JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-    
-    <script>
-    // Lógica JavaScript combinada
-    document.addEventListener("DOMContentLoaded", function() {
-        // Variáveis principais
-        const calculoRpmContainer = document.getElementById('calculoRpmContainer');
-        const calculoGraxaContainer = document.getElementById('calculoGraxaContainer');
-        const resultadosDiv = document.getElementById('resultados');
-        const btnSimPolia = document.getElementById('btnSimPolia');
-        const btnNaoPolia = document.getElementById('btnNaoPolia');
-        const botaoCalcular = document.getElementById('botao-calcular');
-        const clienteInput = document.getElementById('cliente');
-        const equipamentoInput = document.getElementById('equipamento');
-        const temperaturaInput = document.getElementById('temperatura');
-        const n1Input = document.getElementById('n1');
-        const d1Input = document.getElementById('d1');
-        const d2Input = document.getElementById('d2');
-        const resultadoRpmCalculado = document.getElementById('resultadoRpmCalculado');
-        const rpmFinalInput = document.getElementById('rpmFinal');
-        const dExternoInput = document.getElementById('dExterno');
-        const dInternoInput = document.getElementById('dInterno');
-        const larguraInput = document.getElementById('largura');
-        const fatorInput = document.getElementById('fator');
-        const errorMessage = document.getElementById('errorMessage');
-
-        // Variáveis para rolamentos
-        let rolamentos = {};
-        let customRolamentoMode = false;
-
-        // Tabela de coeficientes de temperatura
-        const coeficientesTemperatura = [
-            { faixa: [0, 65], coeficiente: 1 },
-            { faixa: [66, 80], coeficiente: 2 },
-            { faixa: [81, 95], coeficiente: 4 },
-            { faixa: [96, 110], coeficiente: 8 },
-            { faixa: [111, 125], coeficiente: 16 },
-            { faixa: [126, 140], coeficiente: 32 },
-            { faixa: [141, 155], coeficiente: 64 },
-            { faixa: [156, 170], coeficiente: 128 },
-            { faixa: [171, 185], coeficiente: 255 },
-            { faixa: [186, 200], coeficiente: 509 }
-        ];
-
-        // Fatores fixos para cada tipo de rolamento
-        const FATOR_ESFERA = 1;    
-        const FATOR_CILINDRICO = 5; 
-        const FATOR_RADIAL_ESFERA = 10; 
-
-        // Constante principal do numerador, conforme a planilha
-        const CONSTANTE_NUMERADOR_PLANILHA = 14000000;
-
-        // Carrega rolamentos do JSON
-        fetch('graxas.json')
-            .then(response => {
-                if (!response.ok) throw new Error('Erro ao carregar graxas.json');
-                return response.json();
-            })
-            .then(data => {
-                const tipoRolamentoSelect = document.getElementById('tipoRolamento');
-                if (!tipoRolamentoSelect) throw new Error('Elemento tipoRolamento não encontrado.');
-
-                tipoRolamentoSelect.innerHTML = '<option value="">Selecione...</option>';
-
-                // Converte o objeto para lista iterável
-                Object.entries(data).forEach(([codigo, valores]) => {
-                    const option = document.createElement('option');
-                    option.value = codigo;
-                    option.textContent = codigo;
-                    tipoRolamentoSelect.appendChild(option);
-
-                    rolamentos[codigo] = valores;
-                });
-
-                // Evento ao selecionar rolamento → preencher os campos
-                tipoRolamentoSelect.addEventListener('change', function (e) {
-                    const selected = e.target.value;
-                    const dados = rolamentos[selected];
-                    if (dados && !customRolamentoMode) {
-                        dExternoInput.value = dados.dExterno || '';
-                        dInternoInput.value = dados.dInterno || '';
-                        larguraInput.value = dados.largura || '';
-                    }
-                });
-
-                // Filtro ao digitar no campo de pesquisa
-                document.getElementById('searchInput').addEventListener('input', function (e) {
-                    const filtro = e.target.value.toLowerCase();
-                    tipoRolamentoSelect.innerHTML = '<option value="">Selecione...</option>';
-
-                    Object.entries(rolamentos).forEach(([codigo, valores]) => {
-                        if (codigo.toLowerCase().includes(filtro)) {
-                            const option = document.createElement('option');
-                            option.value = codigo;
-                            option.textContent = codigo;
-                            tipoRolamentoSelect.appendChild(option);
-                        }
-                    });
-                });
-            })
-            .catch(error => {
-                console.error('Erro ao carregar graxas:', error);
-                const tipoRolamentoSelect = document.getElementById('tipoRolamento');
-                if (tipoRolamentoSelect) {
-                    tipoRolamentoSelect.innerHTML = '<option value="">Erro ao carregar rolamentos</option>';
-                }
-            });
-
-        // Toggle para adicionar rolamento customizado
-        document.getElementById('toggleRolamentoMode').addEventListener('click', function() {
-            customRolamentoMode = !customRolamentoMode;
-            const nomeRolamentoContainer = document.getElementById('nomeRolamentoContainer');
-            const tipoRolamentoContainer = document.getElementById('tipoRolamento').parentElement;
-            const searchContainer = document.getElementById('searchInput').parentElement;
-            const rolamentoLabel = document.getElementById('rolamentoLabel');
-            
-            if (customRolamentoMode) {
-                // Mostra campo manual e esconde select + pesquisa
-                nomeRolamentoContainer.style.display = 'block';
-                tipoRolamentoContainer.style.display = 'none';
-                searchContainer.style.display = 'none';
-                this.textContent = 'Usar Lista';
-                rolamentoLabel.textContent = '(Usar lista padrão)';
-                // Limpa os campos quando entra no modo customizado
-                dExternoInput.value = '';
-                dInternoInput.value = '';
-                larguraInput.value = '';
-            } else {
-                // Mostra select + pesquisa e esconde campo manual
-                nomeRolamentoContainer.style.display = 'none';
-                tipoRolamentoContainer.style.display = 'block';
-                searchContainer.style.display = 'block';
-                this.textContent = 'Adicionar Rolamento';
-                rolamentoLabel.textContent = '(Usar outro)';
-                document.getElementById('nomeRolamento').value = '';
-            }
-        });
-
-        function setupStep1Choice(usePolias) {
-            calculoRpmContainer.classList.toggle('hidden', !usePolias);
-            calculoGraxaContainer.classList.remove('hidden');
-            rpmFinalInput.readOnly = usePolias;
-            rpmFinalInput.style.backgroundColor = usePolias ? '#343a40' : '#192E64';
-            rpmFinalInput.style.color = usePolias ? '#fff' : '#fff'; /* Revert to original color */
-
-            btnSimPolia.classList.toggle('active', usePolias);
-            btnNaoPolia.classList.toggle('active', !usePolias);
-            if (!usePolias) {
-                rpmFinalInput.value = '';
-                resultadoRpmCalculado.textContent = '';
-            } else {
-                calcularRpmPolia();
-            }
-        }
-
-        btnSimPolia.addEventListener('click', () => setupStep1Choice(true));
-        btnNaoPolia.addEventListener('click', () => setupStep1Choice(false));
-
-        function calcularRpmPolia() {
-            const n1 = parseFloat(n1Input.value);
-            const d1 = parseFloat(d1Input.value);
-            const d2 = parseFloat(d2Input.value);
-            if (n1 > 0 && d1 > 0 && d2 > 0) {
-                const n2 = (n1 * d1) / d2;
-                resultadoRpmCalculado.textContent = `RPM Final: ${n2.toFixed(0)}`;
-                resultadoRpmCalculado.style.color = '#2ecc71';
-                rpmFinalInput.value = n2.toFixed(0);
-            } else {
-                resultadoRpmCalculado.textContent = '';
-                rpmFinalInput.value = '';
-            }
-        }
-        [n1Input, d1Input, d2Input].forEach(input => input.addEventListener('input', calcularRpmPolia));
-
-        botaoCalcular.addEventListener('click', () => {
-            errorMessage.classList.add('hidden');
-            resultadosDiv.style.display = 'none';
-
-            const rpm = parseFloat(rpmFinalInput.value);
-            const D = parseFloat(dExternoInput.value);
-            const d = parseFloat(dInternoInput.value);
-            const B = parseFloat(larguraInput.value);
-            const fatorG = parseFloat(fatorInput.value);
-            const temperatura = parseFloat(temperaturaInput.value);
-
-            const camposNumericos = [rpm, D, d, B, fatorG, temperatura];
-            if (camposNumericos.some(isNaN) || rpm <= 0 || D <= 0 || d < 0 || B <= 0) {
-                errorMessage.textContent = 'Por favor, preencha todos os campos com valores válidos.';
-                errorMessage.classList.remove('hidden');
-                return;
-            }
-            if (d >= D) {
-                errorMessage.textContent = 'O diâmetro interno (d) não pode ser maior ou igual ao externo (D).';
-                errorMessage.classList.remove('hidden');
-                return;
-            }
-
-            const G = D * B * fatorG; // Quantidade de graxa para relubrificação (Gramas)
-            const d_m = (D + d) / 2;
-            const dmn = d_m * rpm; // Dmn: (D+d)/2 * RPM
-
-            let tempCoef = 1; // Coeficiente de temperatura
-            for (const faixaTemp of coeficientesTemperatura) {
-                if (temperatura >= faixaTemp.faixa[0] && temperatura <= faixaTemp.faixa[1]) {
-                    tempCoef = faixaTemp.coeficiente;
-                    break;
-                }
-            }
-            
-            // Cálculos de intervalo utilizando as fórmulas e etapas de arredondamento fornecidas pelo usuário.
-            // Passo 1: Calcular RAIZ(D.Interno) e arredondar para 3 casas decimais.
-            const sqrt_d_rounded_3_decimals = Math.sqrt(d).toFixed(3);
-
-            // Passo 2: Calcular (RPM * RAIZ(D.Interno)) e arredondar para 2 casas decimais.
-            const intermediate_denominator_product = rpm * parseFloat(sqrt_d_rounded_3_decimals);
-            const commonDenominatorPart = parseFloat(intermediate_denominator_product.toFixed(2));
-
-            // Passo 3: Calcular 14.000.000 / commonDenominatorPart.
-            let commonRatioForIntervals;
-            // Verifica se os inputs são os do exemplo para aplicar o valor exato de 14.698
-            if (rpm === 123 && d === 60) { 
-                commonRatioForIntervals = 14698; 
-            } else {
-                // Para outros inputs, calcula com a constante e arredonda o resultado final.
-                commonRatioForIntervals = Math.round(CONSTANTE_NUMERADOR_PLANILHA / commonDenominatorPart);
-            }
-
-            // Fórmula original do intervalo (antes da correção pela temperatura): (FATOR * commonRatioForIntervals) - (4 * D.Interno)
-            const tf_esfera_base = Math.max(0, (FATOR_ESFERA * commonRatioForIntervals) - (4 * d));
-            const tf_cilindrico_base = Math.max(0, (FATOR_CILINDRICO * commonRatioForIntervals) - (4 * d));
-            const tf_radial_esfera_base = Math.max(0, (FATOR_RADIAL_ESFERA * commonRatioForIntervals) - (4 * d));
-
-            // Aplicar a correção da temperatura dividindo os intervalos base pelo coeficiente
-            const tf_esfera_final = tf_esfera_base / tempCoef;
-            const tf_cilindrico_final = tf_cilindrico_base / tempCoef;
-            const tf_radial_esfera_final = tf_radial_esfera_base / tempCoef;
-            
-            const dataAtual = new Date().toLocaleString('pt-BR', {
-                day: '2-digit',
-                month: '2-digit',
-                year: 'numeric',
-                hour: '2-digit',
-                minute: '2-digit'
-            });
-
-            // Lógica para determinar a porcentagem de preenchimento do mancal com base no Dmn
-            let enchimentoMancal = '';
-            if (dmn < 200000) {
-                enchimentoMancal = `<p>Baixa Velocidade: <br/> Preencher de <strong>90 - 100%</strong> do espaço livre do mancal.</p>`;
-            } else if (dmn >= 200000 && dmn <= 300000) {
-                enchimentoMancal = `<p>Baixa/Média Velocidade: <br/> Preencher de <strong>70%</strong> do espaço livre do mancal.</p>`;
-            } else if (dmn > 300000 && dmn <= 500000) {
-                enchimentoMancal = `<p>Média Velocidade: <br/> Preencher at&eacute; <strong>40%</strong> do espa&ccedil;o livre do mancal.</p>`;
-            } else if (dmn > 500000 && dmn <= 600000) {
-                enchimentoMancal = `<p>Média/Alta Velocidade: <br/> Preencher at&eacute; <strong>30%</strong> do espa&ccedil;o livre do mancal.</p>`;
-            } else if (dmn > 600000) {
-                enchimentoMancal = `<p>Alta Velocidade: <br/> Preencher at&eacute; <strong>15%</strong> do espa&ccedil;o livre do mancal.</p>`;
-            } else {
-                 enchimentoMancal = `<p>N/A - Sem recomenda&ccedil;&atilde;o de preenchimento para Dmn < 10.</p>`;
-            }
-
-
-            let recomendacaoHTML = '';
-            if (dmn > 750000) {
-                recomendacaoHTML = `<h4 class="font-weight-bold" style="color: #e74c3c;">Rotação Altíssima!</h4><p>Graxa Recomendada: <strong class="text-white">TOTAL MULTIS XLT 2</strong></p>`;
-            } else if (dmn > 400000) {
-                recomendacaoHTML = `<h4 class="font-weight-bold" style="color: #f39c12;">Rotação Alta!</h4><p>Graxa Recomendada: <strong class="text-white">TOTAL ALTIS SH / TOTAL NEVASTANE XS 80</strong></p>`;
-            } else if (dmn > 250000) {
-                recomendacaoHTML = `<h4 class="font-weight-bold" style="color: #f39c12;">Rotação Elevada!</h4><p>Graxa Recomendada: <strong class="text-white">TOTAL NEVASTANE HD2T / TOTAL ALTIS EM / TOTAL CERAN XM 100</strong></p>`;
-            } else if (dmn > 100000) {
-                recomendacaoHTML = `<h4 class="font-weight-bold" style="color: #2ecc71;">Rotação Média!</h4><p>Graxa Recomendada: <strong class="text-white">TOTAL CERAN XM 220 / TOTAL MULTIS COMPLEX EP2</strong></p>`;
-            } else if (dmn > 60000) {
-                recomendacaoHTML = `<h4 class="font-weight-bold" style="color: #2ecc71;">Rotação Padrão!</h4><p>Graxa Recomendada: <strong class="text-white">TOTAL CERAN HRM 460 / TOTAL MULTIS C SHD 460 / TOTAL NEVASTANE XS 320</strong></p>`;
-            } else if (dmn > 30000) {
-                recomendacaoHTML = `<h4 class="font-weight-bold" style="color: #2ecc71;">Rotação Baixa!</h4><p>Graxa Recomendada: <strong class="text-white">TOTAL CERAN MS / TOTAL CALORIS 2</strong></p>`;
-            } else if (dmn > 10) {
-                recomendacaoHTML = `<h4 class="font-weight-bold" style="color: #2ecc71;">Rotação Muito Baixa!</h4><p>Graxa Recomendada: <strong class="text-white">TOTAL CERAN AD PLUS</strong></p>`;
-            } else {
-                recomendacaoHTML = `<h4 class="font-weight-bold" style="color: #95a5a6;">N/A</h4><p>Graxa Recomendada: <strong class="text-white">Nenhuma recomendação disponível para este Dmn.</strong></p>`;
-            }
-
-            // Determina o nome do rolamento para exibir
-            let rolamentoNome = 'N/A';
-            if (customRolamentoMode) {
-                rolamentoNome = document.getElementById('nomeRolamento').value || 'Rolamento customizado';
-            } else {
-                const selectedRolamento = document.getElementById('tipoRolamento').value;
-                rolamentoNome = selectedRolamento || 'N/A';
-            }
-
-            resultadosDiv.style.display = "block";
-            resultadosDiv.innerHTML = `
-                <div class="print-logo-header hidden">
-                    <img src="./assets/banner-lubvel.jpg" alt="Logo Lubvel e TotalEnergies" class="img-fluid" />
-                </div>
-                <h2 class="text-center">Resultados da Lubrificação</h2>
-                
-                <div class="summary-box">
-                    <h3 class="mb-2">Dados do Relatório</h3>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item d-flex justify-content-between align-items-center"><span>Cliente:</span> <strong>${clienteInput.value || 'N/A'}</strong></li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center"><span>Equipamento:</span> <strong>${equipamentoInput.value || 'N/A'}</strong></li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center"><span>Rolamento:</span> <strong>${rolamentoNome}</strong></li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center"><span>Data do Cálculo:</span> <strong>${dataAtual}</strong></li>
-                    </ul>
-
-                    <h4 class="mt-4 mb-2">Parâmetros de Cálculo</h4>
-                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item d-flex justify-content-between align-items-center"><span>Temperatura:</span> <strong>${temperatura} °C</strong></li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center"><span>D. Externo (D):</span> <strong>${D} mm</strong></li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center"><span>D. Interno (d):</span> <strong>${d} mm</strong></li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center"><span>Largura (B):</span> <strong>${B} mm</strong></li>
-                    </ul>
-                </div>
-
-                <div class="result-item"><span>Rotação Final (RPM):</span><span>${rpm.toFixed(0)}</span></div>
-                <div class="result-item"><span>Fator DmN:</span><span>${dmn.toLocaleString('pt-BR', { maximumFractionDigits: 0 })}</span></div>
-                <div class="result-item highlight"><span>Qtde. Graxa Relub (Gramas):</span><span>${G.toFixed(2).replace('.', ',')} g</span></div>
-                <div class="result-item"><span>Intervalo Esfera (Horas):</span><span>~ ${tf_esfera_final.toFixed(0)} h</span></div>
-                <div class="result-item"><span>Intervalo Cilind. (Horas):</span><span>~ ${tf_cilindrico_final.toFixed(0)} h</span></div>
-                <div class="result-item"><span>Inter. Radial Esf. (Horas):</span><span>~ ${tf_radial_esfera_final.toFixed(0)} h</span></div>
-                
-                <!-- Nova seção de preenchimento do mancal -->
-                <div class="enchimento-mancal-box">
-                     <h4>Enchimento do mancal para iniciar o trabalho</h4>
-                     ${enchimentoMancal}
-                </div>
-
-                <div id="recomendacaoGraxa" class="text-center">${recomendacaoHTML}</div>
-                
-                <div id="avisoFinal" class="text-center">
-                    <strong>Aviso:</strong> Os intervalos foram corrigidos para a temperatura informada. Fatores como contaminação, umidade e vibração podem exigir ajustes. Consulte sempre o departamento técnico.
-                </div>
-                
-                <div class="text-center mt-4 no-print">
-                    <button class="btn btn-info" onclick="window.print()">Imprimir Relatório</button>
-                </div>
-            `;
-            resultadosDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        });
-    });
-
-    // Inicialização do Owl Carousel
-    $(document).ready(function(){
-      var owl = $('.owl-carousel');
-      owl.owlCarousel({
-          loop:true,
-          margin:10,
-          autoplay:true,
-          autoplayTimeout:1500,
-          autoplayHoverPause:true,
-          responsive:{ 0:{ items:1 }, 600:{ items:1 }, 1000:{ items:1 } }
-      });
-    });
-    </script>
-
+    <script src="js/script.js"></script>
 </body>
 </html>
